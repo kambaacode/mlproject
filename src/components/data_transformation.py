@@ -13,7 +13,7 @@ from src.utils import save_object
 
 @dataclass
 class DataTransformationConfig():
-    preprocessor_obj_file_path:str = os.path.join("artifact","preprocessor.pkl")
+    preprocessor_obj_file_path:str = os.path.join("artifacts","preprocessor.pkl")
 
 class DataTransformation():
     def __init__(self):
@@ -74,11 +74,11 @@ class DataTransformation():
             target_feature_test_df = test_df[target_column]
             logging.info("Applying transformation on train and test datasets")
 
-            inpute_feature_train_array = preprocessing_obj.fit_transform(input_feature_train_df)
-            inpute_feature_test_array = preprocessing_obj.transform(input_feature_test_df)
+            input_feature_train_array = preprocessing_obj.fit_transform(input_feature_train_df)
+            input_feature_test_array = preprocessing_obj.transform(input_feature_test_df)
 
-            train_array = np.c_[input_feature_train_df, np.array(input_feature_train_df)]
-            test_array = np.c_[input_feature_test_df, np.array(input_feature_test_df)]
+            train_array = np.c_[input_feature_train_array, np.array(target_feature_train_df)]
+            test_array = np.c_[input_feature_test_array, np.array(target_feature_test_df)]
 
             logging.info("Saved preprocessing object")
 
