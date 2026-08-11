@@ -38,3 +38,13 @@ def evalaute_models(x_train, y_train, x_test, y_test, models):
     except Exception as e:
         logging.info("Exception occured during models evaluation")
         raise CustomException(e, sys)
+
+
+
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return dill.load(file_obj)
+    except Exception as e:
+        logging.info("Exception occured while trying to load weights")
+        raise CustomException(e, sys)
